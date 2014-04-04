@@ -41,7 +41,8 @@ public class MainActivity extends Activity {
 			try {
 				Log.d("SCRIPT", "onPageFinished()");
 				// scriptLoginManager.log("test");
-				loadJavaScriptAndCallInDiffLoadUrl();
+				//loadJavaScriptAndCallInDiffLoadUrl();
+				loadJquerySimulate2();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -63,6 +64,22 @@ public class MainActivity extends Activity {
 			return true;
 		}
 
+	}
+	
+	public void loadJquerySimulate() throws IOException{
+		Log.d("SCRIPT", "DOM ready, load our own JS");
+		StringBuilder js = new StringBuilder();
+		js.append(fileManager.readAssetFile("js/jquery.simulate.js") + "\n");
+		js.append("console.log('load jquery.simulate.js');\n");
+		executeJavaScript(js.toString());
+	}
+	
+	public void loadJquerySimulate2() throws IOException{
+		Log.d("SCRIPT", "DOM ready, load our own JS");
+		StringBuilder js = new StringBuilder();
+		js.append(fileManager.readAssetFile("js/simulate.js") + "\n");
+		js.append("console.log('load simulate.js');\n");
+		executeJavaScript(js.toString());
 	}
 
 	public void loadJavaScriptAndCallInSameLoadUrl() throws IOException {
@@ -124,8 +141,8 @@ public class MainActivity extends Activity {
 		sb.append("	  console.log(e.stack);\n");
 		// sb.append("	  document.write(e);\n");
 		sb.append("}\n");
-		logByLine(sb.toString());
-		// logAll(sb.toString());
+//		logByLine(sb.toString());
+		 logAll(sb.toString());
 		wv.loadUrl("javascript:" + sb.toString());
 	}
 

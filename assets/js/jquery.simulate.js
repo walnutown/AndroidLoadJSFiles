@@ -309,4 +309,4 @@ $.extend( $.simulate.prototype, {
 	}
 });
 
-})( jQuery );
+}( jQuery ));
